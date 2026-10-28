@@ -3,22 +3,22 @@
 
 import React, { useState, useEffect } from "react";
 import { useTheme } from "./ThemeContext";
-import { 
-  Menu, X, Sun, Moon, ExternalLink, 
-  Code, Sparkles, Smartphone, Globe, Palette, 
-  GraduationCap, Mail, Phone, MapPin, ArrowRight, 
+import {
+  Menu, X, Sun, Moon, ExternalLink,
+  Code, Sparkles, Smartphone, Globe, Palette,
+  GraduationCap, Mail, Phone, MapPin, ArrowRight,
   CheckCircle, Calendar, AlertCircle, Heart
 } from "lucide-react";
 
 const GitHubIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
-  <svg className={`${className} fill-current`} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+  <svg className={`${className} fill-current`} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
   </svg>
 );
 
 const LinkedInIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
-  <svg className={`${className} fill-current`} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764.784 1.764 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+  <svg className={`${className} fill-current`} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764.784 1.764 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
   </svg>
 );
 
@@ -45,7 +45,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState("hero");
   const [projectFilter, setProjectFilter] = useState<"all" | "web" | "mobile">("all");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  
+
   // Contact Form State
   const [formData, setFormData] = useState({
     name: "",
@@ -59,32 +59,43 @@ export default function Home() {
 
   useEffect(() => {
     setMounted(true);
-    
-    // Intersection Observer to update active navigation section on scroll
+    document.documentElement.classList.add("js");
+
+    // Intersection Observer for section navigation
     const sections = ["hero", "about", "skills", "experience", "projects", "contact"];
     const observers = sections.map(id => {
       const el = document.getElementById(id);
       if (!el) return null;
-      
       const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setActiveSection(id);
-          }
-        },
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
         { threshold: 0.25, rootMargin: "-10% 0px -40% 0px" }
       );
       observer.observe(el);
       return { observer, el };
     });
 
+    // Reveal observer
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove("reveal-hidden");
+            entry.target.classList.add("reveal");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    document.querySelectorAll(".reveal-trigger").forEach(el => {
+      el.classList.add("reveal-hidden");
+      revealObserver.observe(el);
+    });
+
     return () => {
-      observers.forEach(obs => {
-        if (obs) {
-          obs.observer.unobserve(obs.el);
-          obs.observer.disconnect();
-        }
-      });
+      observers.forEach(obs => { if (obs) { obs.observer.unobserve(obs.el); obs.observer.disconnect(); } });
+      revealObserver.disconnect();
     };
   }, []);
 
@@ -166,22 +177,22 @@ export default function Home() {
   const skillCategories = [
     {
       title: "Core Technologies",
-      icon: <Code className="w-5 h-5 text-indigo-500" />,
+      icon: <Code className="w-4 h-4" aria-hidden="true" />,
       skills: ["TypeScript", "JavaScript (ES6+)", "HTML5", "CSS3", "SQL"]
     },
     {
       title: "Frameworks & Libraries",
-      icon: <Globe className="w-5 h-5 text-purple-500" />,
+      icon: <Globe className="w-4 h-4" aria-hidden="true" />,
       skills: ["Next.js (App Router)", "React.js", "React Native", "Expo"]
     },
     {
       title: "Styling & Design Tools",
-      icon: <Palette className="w-5 h-5 text-pink-500" />,
+      icon: <Palette className="w-4 h-4" aria-hidden="true" />,
       skills: ["Tailwind CSS", "CorelDRAW", "Responsive Layouts", "UI/UX Principles"]
     },
     {
       title: "Professional Skills",
-      icon: <Sparkles className="w-5 h-5 text-emerald-500" />,
+      icon: <Sparkles className="w-4 h-4" aria-hidden="true" />,
       skills: ["Self-Directed Learning", "Creative Problem Solving", "Technical Communication", "Git / GitHub Version Control", "Scrum / Agile Teamwork"]
     }
   ];
@@ -313,49 +324,66 @@ export default function Home() {
     return proj.categories.includes(projectFilter);
   });
 
-  return (
-    <div className="relative min-h-screen flex flex-col overflow-x-hidden font-sans selection:bg-indigo-500/30">
-      
-      {/* Floating Background Blobs */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-[10%] left-[-10%] w-75 h-75 sm:w-125 sm:h-125 rounded-full bg-indigo-500/10 blur-[80px] sm:blur-[120px] dark:bg-indigo-900/10 animate-float" />
-        <div className="absolute top-[40%] right-[-10%] w-62.5 h-62.5 sm:w-112.5 sm:h-112.5 rounded-full bg-purple-500/10 blur-[80px] sm:blur-[120px] dark:bg-purple-900/10 animate-float-delayed" />
-  <div className="absolute bottom-[10%] left-[20%] w-75 h-75 sm:w-125 sm:h-125 rounded-full bg-pink-500/5 blur-[80px] sm:blur-[120px] dark:bg-pink-900/5 animate-float-slow" />
-      </div>
+  const navLinks = ["About", "Skills", "Experience", "Projects", "Contact"];
 
-      {/* STICKY GLASSMORPHIC NAVBAR */}
-      <header className="sticky top-0 z-40 w-full glass transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
-          
-          {/* Brand/Logo */}
-          <a href="#hero" className="flex items-center gap-2 group">
-            <span className="h-10 w-10 rounded-xl bg-linear-to-tr from-indigo-600 via-purple-600 to-pink-600 flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:scale-105 transition-transform duration-300">
-              RY
+  return (
+    <div
+      className="relative min-h-screen flex flex-col"
+      style={{ backgroundColor: "var(--color-paper)", color: "var(--color-ink)", overflowX: "clip" }}
+    >
+
+      {/* ═══ NAVIGATION — edge-aligned bar ═══ */}
+      <header
+        className="sticky top-0 w-full proof"
+        style={{
+          zIndex: "var(--z-sticky-nav)",
+          borderBottom: "var(--rule-hair) solid var(--color-rule)",
+          height: "var(--banner-height)"
+        }}
+      >
+        <div className="container flex items-center justify-between h-full">
+          {/* Brand */}
+          <a
+            href="#hero"
+            className="flex items-center group"
+            aria-label="Rishi, home"
+            style={{ textDecoration: "none" }}
+          >
+            <span
+              style={{
+                fontFamily: "var(--font-calligraphy)",
+                fontSize: "clamp(1.85rem, 2.2vw + 0.8rem, 2.4rem)",
+                fontWeight: 400,
+                color: "var(--color-ink)",
+                lineHeight: 1,
+                letterSpacing: "0.01em",
+                transition: "color var(--dur-micro) var(--ease-out)"
+              }}
+            >
+              Rishi
             </span>
-            <div className="flex flex-col">
-              <span className="font-extrabold text-sm sm:text-base tracking-tight bg-clip-text text-transparent bg-linear-to-r from-zinc-900 to-zinc-700 dark:from-zinc-50 dark:to-zinc-300 group-hover:text-indigo-500 transition-colors">
-                Rishi Kumar Yadav
-              </span>
-              <span className="text-[10px] text-zinc-500 dark:text-zinc-400 font-semibold tracking-wider uppercase leading-none">
-                Frontend Developer
-              </span>
-            </div>
           </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1 sm:gap-2">
-            {["About", "Skills", "Experience", "Projects", "Contact"].map((section) => {
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
+            {navLinks.map(section => {
               const id = section.toLowerCase();
               const isActive = activeSection === id;
               return (
                 <a
                   key={section}
                   href={`#${id}`}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium tracking-wide transition-all duration-300 ${
-                    isActive 
-                      ? "text-indigo-600 bg-indigo-500/10 dark:text-indigo-400 dark:bg-indigo-500/5" 
-                      : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-500/5"
-                  }`}
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "var(--text-sm)",
+                    fontWeight: 500,
+                    color: isActive ? "var(--color-accent)" : "var(--color-ink-2)",
+                    padding: "6px 12px",
+                    borderRadius: "2px",
+                    textDecoration: "none",
+                    whiteSpace: "nowrap",
+                    transition: "color var(--dur-micro) var(--ease-out)"
+                  }}
                 >
                   {section}
                 </a>
@@ -363,453 +391,758 @@ export default function Home() {
             })}
           </nav>
 
-          {/* Action Buttons: Theme Toggle & Resume download */}
+          {/* Desktop actions */}
           <div className="hidden md:flex items-center gap-3">
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-all duration-300 focus:outline-none shadow-sm hover:scale-105"
-              aria-label="Toggle Theme"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: 36,
+                height: 36,
+                border: "var(--rule-hair) solid var(--color-rule)",
+                borderRadius: "2px",
+                background: "transparent",
+                color: "var(--color-ink-2)",
+                cursor: "pointer",
+                transition: "background var(--dur-micro) var(--ease-out)"
+              }}
+              aria-label="Toggle theme"
             >
-              {theme === "dark" ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-600" />}
+              {theme === "dark"
+                ? <Sun className="w-4 h-4" aria-hidden="true" />
+                : <Moon className="w-4 h-4" aria-hidden="true" />
+              }
             </button>
-            <a
-              href="#contact"
-              className="px-5 py-2.5 rounded-xl bg-zinc-900 dark:bg-zinc-50 text-white dark:text-zinc-950 font-semibold text-sm hover:bg-zinc-800 dark:hover:bg-zinc-200 hover:shadow-lg transition-all duration-300 hover:scale-105 flex items-center gap-1"
-            >
+            <a href="#contact" className="btn btn--primary" style={{ fontSize: "var(--text-sm)", minHeight: 36 }}>
               Contact Me
-              <ArrowRight className="w-4 h-4" />
             </a>
           </div>
 
-          {/* Mobile Navigation controls */}
+          {/* Mobile controls — with accessible touch targets */}
           <div className="flex md:hidden items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-all duration-300 focus:outline-none shadow-sm"
-              aria-label="Toggle Theme"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: 44,
+                height: 44,
+                minWidth: 44,
+                minHeight: 44,
+                border: "var(--rule-hair) solid var(--color-rule)",
+                borderRadius: "2px",
+                background: "transparent",
+                color: "var(--color-ink-2)",
+                cursor: "pointer"
+              }}
+              aria-label="Toggle theme"
             >
-              {theme === "dark" ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-600" />}
+              {theme === "dark"
+                ? <Sun className="w-4 h-4" aria-hidden="true" />
+                : <Moon className="w-4 h-4" aria-hidden="true" />
+              }
             </button>
-            
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-all duration-300 focus:outline-none"
-              aria-label="Toggle Menu"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: 44,
+                height: 44,
+                minWidth: 44,
+                minHeight: 44,
+                border: "var(--rule-hair) solid var(--color-rule)",
+                borderRadius: "2px",
+                background: "transparent",
+                color: "var(--color-ink)",
+                cursor: "pointer"
+              }}
+              aria-label="Toggle menu"
+              aria-expanded={isMobileMenuOpen}
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMobileMenuOpen ? <X className="w-5 h-5" aria-hidden="true" /> : <Menu className="w-5 h-5" aria-hidden="true" />}
             </button>
           </div>
         </div>
 
         {/* Mobile menu panel */}
         {isMobileMenuOpen && (
-          <div className="md:hidden w-full border-t border-zinc-200 dark:border-zinc-800 bg-background/95 backdrop-blur-lg px-4 py-6 flex flex-col gap-3 shadow-xl">
-            {["About", "Skills", "Experience", "Projects", "Contact"].map((section) => {
-              const id = section.toLowerCase();
-              const isActive = activeSection === id;
-              return (
-                <a
-                  key={section}
-                  href={`#${id}`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`px-4 py-3 rounded-xl text-base font-semibold tracking-wide transition-all ${
-                    isActive 
-                      ? "text-indigo-600 bg-indigo-500/10 dark:text-indigo-400 dark:bg-indigo-500/5" 
-                      : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
-                  }`}
-                >
-                  {section}
-                </a>
-              );
-            })}
-            <a
-              href="#contact"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="mt-2 w-full py-3 text-center rounded-xl bg-zinc-900 dark:bg-zinc-50 text-white dark:text-zinc-950 font-bold hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-md flex items-center justify-center gap-1"
-            >
-              Hire Me
-              <ArrowRight className="w-4 h-4" />
-            </a>
+          <div
+            className="md:hidden"
+            style={{
+              borderTop: "var(--rule-hair) solid var(--color-rule)",
+              backgroundColor: "var(--color-paper)",
+              padding: "var(--space-md) var(--space-md) var(--space-xl)",
+              boxShadow: "var(--shadow-sheet)"
+            }}
+          >
+            <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
+              {navLinks.map(section => {
+                const id = section.toLowerCase();
+                const isActive = activeSection === id;
+                return (
+                  <a
+                    key={section}
+                    href={`#${id}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: "var(--text-md)",
+                      fontWeight: 500,
+                      color: isActive ? "var(--color-accent)" : "var(--color-ink)",
+                      padding: "12px 14px",
+                      minHeight: 44,
+                      display: "flex",
+                      alignItems: "center",
+                      borderBottom: "var(--rule-hair) solid var(--color-rule)",
+                      textDecoration: "none",
+                      whiteSpace: "nowrap"
+                    }}
+                  >
+                    {section}
+                  </a>
+                );
+              })}
+              <a
+                href="#contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="btn btn--primary"
+                style={{ marginTop: "var(--space-md)", width: "100%", justifyContent: "center", minHeight: 48 }}
+              >
+                Hire Me
+              </a>
+            </nav>
           </div>
         )}
       </header>
 
-      {/* MAIN CONTENT CONTAINER */}
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 py-4 sm:py-8 flex flex-col gap-24 sm:gap-36">
-        
-        {/* 1. HERO SECTION */}
-        <section id="hero" className="min-h-[70vh] sm:min-h-[80vh] flex flex-col justify-center py-8 sm:py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-            
-            {/* Slogan and details */}
-            <div className="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left">
-              
-              {/* Badge */}
-              <div className="inline-flex self-center lg:self-start items-center gap-1.5 px-3 py-1.5 rounded-full bg-indigo-500/10 dark:bg-indigo-500/5 border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 font-bold text-xs sm:text-sm tracking-wider uppercase animate-pulse">
-                <Sparkles className="w-3.5 h-3.5" />
-                Available for Freelanceing
-              </div>
+      {/* ═══ MAIN CONTENT ═══ */}
+      <main className="flex-1 flex flex-col" style={{ gap: "var(--section-gap-l)" }}>
 
-              {/* Title */}
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight sm:leading-none text-zinc-900 dark:text-zinc-50">
-                Crafting Premium <br className="hidden sm:inline" />
-                <span className="bg-clip-text text-transparent bg-linear-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400">
-                  Web & Mobile
-                </span> <br className="hidden lg:inline" />
-                User Interfaces
-              </h1>
+        {/* ─── 1. HERO — Ledge posture: name set huge at the base of the proof field ─── */}
+        <section
+          id="hero"
+          className="proof hero-section"
+          style={{
+            position: "relative",
+            maskImage: "linear-gradient(to bottom, oklch(97.2% 0.006 215), oklch(97.2% 0.006 215) 85%, transparent)"
+          }}
+        >
+          <div className="container">
+            {/* Availability status */}
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "var(--space-xs)",
+                marginBottom: "var(--space-md)",
+                fontFamily: "var(--font-body)",
+                fontSize: "var(--text-sm)",
+                fontWeight: 500,
+                color: "var(--color-muted)"
+              }}
+            >
+              <span
+                style={{
+                  width: 8,
+                  height: 8,
+                  borderRadius: "50%",
+                  backgroundColor: "var(--color-accent)",
+                  display: "inline-block",
+                  flexShrink: 0
+                }}
+              />
+              Available for Freelancing
+            </div>
 
-              {/* Description */}
-              <p className="text-base sm:text-lg lg:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
+            {/* Orange construction guide above the headline */}
+            <div className="guide guide-draw" style={{ width: "100%", marginBottom: "var(--space-sm)" }} />
+
+            {/* Signature headline: responsive clamp scaling from 2.25rem on phones to 6rem on desktop */}
+            <h1
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: "var(--display-weight)",
+                fontSize: "clamp(2.25rem, 7vw + 0.5rem, 6rem)",
+                letterSpacing: "var(--tracking-display)",
+                lineHeight: 1.0,
+                color: "var(--color-ink)",
+                maxWidth: "none",
+                marginBottom: "var(--space-sm)",
+                overflowWrap: "break-word",
+                wordBreak: "break-word"
+              }}
+            >
+              Crafting Premium<br />
+              Web &amp; Mobile<br />
+              User Interfaces
+            </h1>
+
+            {/* Orange baseline guide */}
+            <div className="guide" style={{ width: "100%", marginBottom: "var(--space-xl)" }} />
+
+            {/* Lede + actions: flex column on mobile, row on desktop */}
+            <div className="flex flex-col sm:flex-row items-start gap-6 sm:gap-16">
+              <p
+                className="lead"
+                style={{ color: "var(--color-ink-2)", maxWidth: "52ch", flex: "1 1 auto" }}
+              >
                 I am a front-end developer specializing in building beautiful, highly performant cross-platform applications. Leverages React, Next.js, React Native, TypeScript, and Tailwind CSS to ship code faster and refine digital products.
               </p>
 
-              {/* CTA buttons */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-2">
-                <a
-                  href="#projects"
-                  className="w-full sm:w-auto px-8 py-4 rounded-xl bg-linear-to-r from-indigo-600 to-purple-600 text-white font-bold text-base hover:opacity-95 hover:shadow-xl shadow-indigo-500/25 transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2"
-                >
+              <div
+                className="flex flex-col sm:flex-row gap-3 shrink-0 w-full sm:w-auto"
+                style={{ minWidth: "fit-content" }}
+              >
+                <a href="#projects" className="btn btn--primary" style={{ justifyContent: "center" }}>
                   View My Projects
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </a>
-                
-                <a
-                  href="#contact"
-                  className="w-full sm:w-auto px-8 py-4 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-800 dark:text-zinc-200 font-bold text-base transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 shadow-sm"
-                >
+                <a href="#contact" className="btn" style={{ justifyContent: "center" }}>
                   Get In Touch
                 </a>
               </div>
-
-              {/* Tech Stack quick badges */}
-              <div className="flex flex-col gap-2 mt-4 text-zinc-500 dark:text-zinc-400">
-                <span className="text-xs uppercase font-extrabold tracking-wider">Primary Tech Stack</span>
-                <div className="flex flex-wrap justify-center lg:justify-start gap-2.5">
-                  {["Next.js", "React Native", "TypeScript", "Tailwind CSS", "React.js"].map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3.5 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs sm:text-sm font-bold text-zinc-700 dark:text-zinc-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
             </div>
 
-            {/* Profile visual banner */}
-            <div className="lg:col-span-5 flex justify-center items-center">
-              <div className="relative w-72 h-72 sm:w-96 sm:h-96">
-                
-                {/* Decorative glowing gradient borders */}
-                <div className="absolute inset-0 rounded-3xl bg-linear-to-tr from-indigo-500 via-purple-500 to-pink-500 opacity-20 dark:opacity-30 blur-[20px] animate-pulse-glow" />
-                
-                <div className="absolute inset-2 rounded-3xl bg-linear-to-br from-indigo-600 to-purple-600 p-0.5 shadow-2xl">
-                  <div className="w-full h-full rounded-[22px] bg-zinc-50 dark:bg-zinc-950 flex flex-col items-center justify-center p-6 text-center">
-                    
-                    {/* Floating elements inside visual frame */}
-                    <div className="h-20 w-20 rounded-2xl bg-indigo-500/10 dark:bg-indigo-500/5 flex items-center justify-center mb-6">
-                      <Code className="w-10 h-10 text-indigo-600 dark:text-indigo-400" />
-                    </div>
-                    
-                    <h3 className="font-extrabold text-xl sm:text-2xl text-zinc-800 dark:text-zinc-100 leading-snug">
-                      Rishi Kumar Yadav
-                    </h3>
-                    
-                    <p className="text-sm font-bold text-indigo-600 dark:text-indigo-400 mt-1 uppercase tracking-wider">
-                      Frontend Developer
-                    </p>
-                    
-                    <div className="w-16 h-1 bg-linear-to-r from-indigo-600 to-purple-600 rounded-full my-4" />
-                    
-                    <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 font-medium leading-relaxed">
-                      &ldquo;I bridge the gap between creative visual layouts and scalable type-safe code execution.&rdquo;
-                    </p>
-
-                    <div className="flex gap-4 mt-6">
-                      <a href="https://linkedin.com/in/rishi2514" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-all">
-                        <LinkedInIcon className="w-5 h-5" />
-                      </a>
-                      <a href="https://github.com/rishi2514" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-all">
-                        <GitHubIcon className="w-5 h-5" />
-                      </a>
-                      <a href="mailto:rsy81179105@gmail.com" className="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-all">
-                        <Mail className="w-5 h-5" />
-                      </a>
-                    </div>
-                  </div>
+            {/* Tech stack — index row */}
+            <div className="set" style={{ marginTop: "var(--space-2xl)" }}>
+              {["Next.js", "React Native", "TypeScript", "Tailwind CSS", "React.js"].map((tech, i) => (
+                <div
+                  key={tech}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "var(--space-sm) 0",
+                    fontFamily: "var(--font-body)",
+                    fontSize: "var(--text-sm)",
+                    fontWeight: 500,
+                    color: i === 0 ? "var(--color-ink)" : "var(--color-ink-2)"
+                  }}
+                >
+                  <span>{tech}</span>
+                  {i === 0 && (
+                    <span style={{ color: "var(--color-muted)", fontSize: "var(--text-xs)" }}>primary</span>
+                  )}
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* 2. ABOUT ME SECTION */}
-        <section id="about" className="scroll-mt-24">
-          <div className="flex flex-col gap-12">
-            
-            {/* Title block */}
-            <div className="text-center md:text-left">
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight">
-                About Me
-              </h2>
-              <div className="h-1.5 w-16 bg-indigo-600 dark:bg-indigo-400 rounded-full mt-3 mx-auto md:mx-0" />
-            </div>
-
-            {/* Description layout */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-              
-              <div className="md:col-span-7 flex flex-col gap-6 font-medium text-zinc-600 dark:text-zinc-400 leading-relaxed text-sm sm:text-base">
-                <p>
-                  My journey into software engineering has been entirely intentional. While completing my Bachelor&apos;s degree via distance learning, I chose to dedicate that flexibility to self-study, immersing myself in frontend layouts, styling models, and JavaScript programming.
-                </p>
-                <p>
-                  I formalized this experience through a structured <span className="text-zinc-900 dark:text-zinc-50 font-bold">Diploma in Web Designing</span> at the Lal Bahadur Shastri Training Institute, graduating with First Division. This bridged the creative UI/UX fundamentals with high-performance JS architectures.
-                </p>
-                <p>
-                  Today, I collaborate in teams building scalable products. Most recently, I drive development on the <span className="text-zinc-900 dark:text-zinc-50 font-bold">AUM TASK</span> corporate platform, implementing secure mobile flows in React Native and performance-optimized pages in Next.js.
-                </p>
-                <p>
-                  I leverage modern AI engineering tools like Antigravity to write clean, type-safe code, validate constraints early, and deploy state-of-the-art experiences quickly.
-                </p>
+        {/* ─── 2. ABOUT — Responsive Split Grid ─── */}
+        <section id="about" className="scroll-mt-16">
+          <div className="container">
+            <div className="split-grid">
+              {/* Head block on columns 1–5 (stacks on mobile) */}
+              <div className="col-span-head reveal-trigger" style={{ "--i": "0" } as React.CSSProperties}>
+                <h2
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontWeight: "var(--display-weight)",
+                    fontSize: "var(--text-section)",
+                    letterSpacing: "var(--tracking-display)",
+                    color: "var(--color-ink)",
+                    maxWidth: "none"
+                  }}
+                >
+                  About Me
+                </h2>
+                <div className="guide guide-draw" style={{ marginTop: "var(--space-md)", width: "48px" }} />
               </div>
 
-              {/* Information Sidebar */}
-              <div className="md:col-span-5 glass rounded-2xl p-6 sm:p-8 flex flex-col gap-6">
-                <h3 className="font-extrabold text-lg sm:text-xl text-zinc-900 dark:text-zinc-50">
-                  Quick Details
-                </h3>
-                
-                <div className="flex flex-col gap-4">
-                  
-                  <div className="flex items-center gap-3.5 text-zinc-600 dark:text-zinc-400">
-                    <div className="p-2.5 rounded-lg bg-zinc-100 dark:bg-zinc-900">
-                      <MapPin className="w-4 h-4 text-indigo-500" />
-                    </div>
-                    <div className="flex flex-col text-xs sm:text-sm">
-                      <span className="font-bold text-zinc-950 dark:text-zinc-50">Location</span>
-                      <span>Delhi Cantt, New Delhi, India</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3.5 text-zinc-600 dark:text-zinc-400">
-                    <div className="p-2.5 rounded-lg bg-zinc-100 dark:bg-zinc-900">
-                      <Mail className="w-4 h-4 text-indigo-500" />
-                    </div>
-                    <div className="flex flex-col text-xs sm:text-sm">
-                      <span className="font-bold text-zinc-950 dark:text-zinc-50">Email</span>
-                      <a href="mailto:rsy81179105@gmail.com" className="hover:text-indigo-500 hover:underline">rsy81179105@gmail.com</a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3.5 text-zinc-600 dark:text-zinc-400">
-                    <div className="p-2.5 rounded-lg bg-zinc-100 dark:bg-zinc-900">
-                      <Phone className="w-4 h-4 text-indigo-500" />
-                    </div>
-                    <div className="flex flex-col text-xs sm:text-sm">
-                      <span className="font-bold text-zinc-950 dark:text-zinc-50">Phone</span>
-                      <a href="tel:+919315283938" className="hover:text-indigo-500 hover:underline">+91 9315283938</a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3.5 text-zinc-600 dark:text-zinc-400">
-                    <div className="p-2.5 rounded-lg bg-zinc-100 dark:bg-zinc-900">
-                      <GraduationCap className="w-4 h-4 text-indigo-500" />
-                    </div>
-                    <div className="flex flex-col text-xs sm:text-sm">
-                      <span className="font-bold text-zinc-950 dark:text-zinc-50">Education</span>
-                      <span>Diploma in Web Design & BA</span>
-                    </div>
-                  </div>
-
+              {/* Body on columns 7–12 (stacks on mobile) */}
+              <div className="col-span-body reveal-trigger">
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "var(--space-lg)",
+                    fontFamily: "var(--font-body)",
+                    fontSize: "var(--text-md)",
+                    lineHeight: 1.65,
+                    color: "var(--color-ink-2)"
+                  }}
+                >
+                  <p>
+                    My journey into software engineering has been entirely intentional. While completing my Bachelor&apos;s degree via distance learning, I chose to dedicate that flexibility to self-study, immersing myself in frontend layouts, styling models, and JavaScript programming.
+                  </p>
+                  <p>
+                    I formalized this experience through a structured <strong style={{ color: "var(--color-ink)", fontWeight: 500 }}>Diploma in Web Designing</strong> at the Lal Bahadur Shastri Training Institute, graduating with First Division. This bridged the creative UI/UX fundamentals with high-performance JS architectures.
+                  </p>
+                  <p>
+                    Today, I collaborate in teams building scalable products. Most recently, I drive development on the <strong style={{ color: "var(--color-ink)", fontWeight: 500 }}>AUM TASK</strong> corporate platform, implementing secure mobile flows in React Native and performance-optimized pages in Next.js.
+                  </p>
+                  <p>
+                    I leverage modern AI engineering tools like Antigravity to write clean, type-safe code, validate constraints early, and deploy state-of-the-art experiences quickly.
+                  </p>
                 </div>
 
-                <hr className="border-zinc-200 dark:border-zinc-800" />
-
-                <div className="flex justify-center gap-3.5">
-                  <a
-                    href="https://linkedin.com/in/rishi2514"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 py-3 text-center rounded-xl bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 font-bold text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 transition-all flex items-center justify-center gap-1.5"
+                {/* Quick Details card */}
+                <div
+                  className="crop"
+                  style={{
+                    marginTop: "var(--space-2xl)",
+                    padding: "var(--space-xl)",
+                    background: "var(--color-paper-2)",
+                    borderRadius: "3px",
+                    boxShadow: "var(--shadow-sheet)"
+                  }}
+                >
+                  <h3
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontWeight: "var(--display-weight)",
+                      fontSize: "var(--text-title)",
+                      letterSpacing: "var(--tracking-display)",
+                      color: "var(--color-ink)",
+                      marginBottom: "var(--space-lg)"
+                    }}
                   >
-                    <LinkedInIcon className="w-4 h-4" />
-                    LinkedIn
-                  </a>
-                  <a
-                    href="https://github.com/rishi2514"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 py-3 text-center rounded-xl bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 font-bold text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 transition-all flex items-center justify-center gap-1.5"
-                  >
-                    <GitHubIcon className="w-4 h-4" />
-                    GitHub
-                  </a>
-                </div>
-              </div>
+                    Quick Details
+                  </h3>
 
-            </div>
-
-          </div>
-        </section>
-
-        {/* 3. SKILLS SECTION */}
-        <section id="skills" className="scroll-mt-24">
-          <div className="flex flex-col gap-12">
-            
-            {/* Title */}
-            <div className="text-center md:text-left">
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight">
-                Skills & Tech Stack
-              </h2>
-              <div className="h-1.5 w-16 bg-indigo-600 dark:bg-indigo-400 rounded-full mt-3 mx-auto md:mx-0" />
-            </div>
-
-            {/* Skills Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-              {skillCategories.map((category) => (
-                <div key={category.title} className="glass rounded-2xl p-6 sm:p-8 flex flex-col gap-6 shadow-sm hover:shadow-md transition-all hover:scale-[1.01]">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-900">
-                      {category.icon}
-                    </div>
-                    <h3 className="font-extrabold text-lg sm:text-xl text-zinc-800 dark:text-zinc-100">
-                      {category.title}
-                    </h3>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2.5">
-                    {category.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="px-4 py-2 rounded-xl bg-zinc-100 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-zinc-800/80 text-sm font-bold text-zinc-800 dark:text-zinc-200"
+                  <div className="set" style={{ borderTop: "var(--rule-hair) solid var(--color-rule)" }}>
+                    {[
+                      { icon: <MapPin className="w-4 h-4" aria-hidden="true" />, label: "Location", value: "Delhi Cantt, New Delhi, India" },
+                      {
+                        icon: <Mail className="w-4 h-4" aria-hidden="true" />, label: "Email",
+                        value: <a href="mailto:rsy81179105@gmail.com" style={{ color: "inherit", textDecorationColor: "var(--color-accent)", wordBreak: "break-all" }}>rsy81179105@gmail.com</a>
+                      },
+                      {
+                        icon: <Phone className="w-4 h-4" aria-hidden="true" />, label: "Phone",
+                        value: <a href="tel:+919315283938" style={{ color: "inherit", textDecorationColor: "var(--color-accent)" }}>+91 9315283938</a>
+                      },
+                      { icon: <GraduationCap className="w-4 h-4" aria-hidden="true" />, label: "Education", value: "Diploma in Web Design & BA" }
+                    ].map(item => (
+                      <div
+                        key={item.label}
+                        style={{
+                          display: "flex",
+                          alignItems: "flex-start",
+                          gap: "var(--space-md)",
+                          padding: "var(--space-md) 0"
+                        }}
                       >
-                        {skill}
-                      </span>
+                        <span style={{ color: "var(--color-accent)", marginTop: 2, flexShrink: 0 }}>{item.icon}</span>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 2, minWidth: 0 }}>
+                          <span style={{ fontFamily: "var(--font-body)", fontSize: "var(--text-xs)", fontWeight: 500, color: "var(--color-muted)" }}>
+                            {item.label}
+                          </span>
+                          <span style={{ fontFamily: "var(--font-body)", fontSize: "var(--text-sm)", fontWeight: 400, color: "var(--color-ink)" }}>
+                            {item.value}
+                          </span>
+                        </div>
+                      </div>
                     ))}
+                  </div>
+
+                  {/* Social links: responsive row on tablet, stacked on narrow mobile */}
+                  <div
+                    className="flex flex-col sm:flex-row gap-3"
+                    style={{ marginTop: "var(--space-lg)" }}
+                  >
+                    <a
+                      href="https://linkedin.com/in/rishi2514"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn"
+                      style={{ flex: 1, justifyContent: "center", fontSize: "var(--text-sm)" }}
+                    >
+                      <LinkedInIcon className="w-4 h-4" />
+                      LinkedIn
+                    </a>
+                    <a
+                      href="https://github.com/rishi2514"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn"
+                      style={{ flex: 1, justifyContent: "center", fontSize: "var(--text-sm)" }}
+                    >
+                      <GitHubIcon className="w-4 h-4" />
+                      GitHub
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── 3. SKILLS — Fluid responsive auto-fit grid ─── */}
+        <section id="skills" className="scroll-mt-16" style={{ backgroundColor: "var(--color-paper-2)" }}>
+          <div
+            className="container"
+            style={{ paddingTop: "var(--section-gap-s)", paddingBottom: "var(--section-gap-s)" }}
+          >
+            {/* Head */}
+            <div style={{ marginBottom: "var(--space-2xl)" }}>
+              <h2
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontWeight: "var(--display-weight)",
+                  fontSize: "var(--text-section)",
+                  letterSpacing: "var(--tracking-display)",
+                  color: "var(--color-ink)"
+                }}
+              >
+                Skills &amp; Tech Stack
+              </h2>
+            </div>
+
+            {/* Skills auto-fit grid: min(100%, 260px) guarantees no horizontal overflow on mobile */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))",
+                gap: "var(--gap-columns)"
+              }}
+            >
+              {skillCategories.map((category, idx) => (
+                <div
+                  key={category.title}
+                  className="crop reveal-trigger"
+                  style={{ "--i": idx } as React.CSSProperties}
+                >
+                  <div
+                    style={{
+                      backgroundColor: "var(--color-paper)",
+                      borderRadius: "3px",
+                      padding: "var(--space-xl)",
+                      boxShadow: "var(--shadow-sheet)",
+                      height: "100%"
+                    }}
+                  >
+                    {/* Category header */}
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "var(--space-sm)",
+                        marginBottom: "var(--space-lg)",
+                        paddingBottom: "var(--space-md)",
+                        borderBottom: "var(--rule-hair) solid var(--color-ink)"
+                      }}
+                    >
+                      <span style={{ color: "var(--color-accent)" }}>{category.icon}</span>
+                      <h3
+                        style={{
+                          fontFamily: "var(--font-display)",
+                          fontWeight: "var(--display-weight)",
+                          fontSize: "var(--text-title)",
+                          letterSpacing: "var(--tracking-display)",
+                          color: "var(--color-ink)",
+                          lineHeight: 1.2
+                        }}
+                      >
+                        {category.title}
+                      </h3>
+                    </div>
+
+                    {/* Skills list */}
+                    <div className="set" style={{ borderTop: "none" }}>
+                      {category.skills.map(skill => (
+                        <div
+                          key={skill}
+                          style={{
+                            fontFamily: "var(--font-body)",
+                            fontSize: "var(--text-sm)",
+                            fontWeight: 400,
+                            color: "var(--color-ink-2)",
+                            padding: "var(--space-xs) 0"
+                          }}
+                        >
+                          {skill}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
-
           </div>
         </section>
 
-        {/* 4. EXPERIENCE SECTION */}
-        <section id="experience" className="scroll-mt-24">
-          <div className="flex flex-col gap-12">
-            
-            {/* Title */}
-            <div className="text-center md:text-left">
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight">
-                Work Experience
-              </h2>
-              <div className="h-1.5 w-16 bg-indigo-600 dark:bg-indigo-400 rounded-full mt-3 mx-auto md:mx-0" />
-            </div>
+        {/* ─── 4. EXPERIENCE — Responsive split-grid index rows ─── */}
+        <section id="experience" className="scroll-mt-16">
+          <div className="container">
+            {/* Head */}
+            <h2
+              className="reveal-trigger"
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: "var(--display-weight)",
+                fontSize: "var(--text-section)",
+                letterSpacing: "var(--tracking-display)",
+                color: "var(--color-ink)",
+                marginBottom: "var(--space-2xl)"
+              }}
+            >
+              Work Experience
+            </h2>
 
-            {/* Timeline */}
-            <div className="relative border-l-2 border-zinc-200 dark:border-zinc-800 pl-6 sm:pl-10 ml-3 sm:ml-6 flex flex-col gap-12 sm:gap-16">
-              {experiences.map((exp) => (
-                <div key={exp.company} className="relative group">
-                  
-                  {/* Timeline dot */}
-                  <span className="absolute -left-8.75 sm:-left-12.75 top-1.5 h-6 w-6 rounded-full border-4 border-background bg-indigo-600 dark:bg-indigo-400 flex items-center justify-center shadow group-hover:scale-110 transition-transform" />
-                  
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-4">
-                    <div className="flex flex-col">
-                      <h3 className="font-extrabold text-lg sm:text-xl text-zinc-900 dark:text-zinc-50">
-                        {exp.role}
-                      </h3>
-                      
-                      <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-1 text-sm font-bold text-indigo-600 dark:text-indigo-400">
-                        <span>{exp.company}</span>
-                        <span className="h-1 w-1 rounded-full bg-zinc-400" />
-                        <span className="text-zinc-500 dark:text-zinc-400">{exp.location}</span>
-                      </div>
+            {/* Timeline as responsive index rows */}
+            <div className="set" style={{ borderTop: "var(--rule-hair) solid var(--color-ink)" }}>
+              {experiences.map((exp, idx) => (
+                <div
+                  key={exp.company}
+                  className="split-grid reveal-trigger"
+                  style={{
+                    "--i": idx,
+                    padding: "var(--space-xl) 0"
+                  } as React.CSSProperties}
+                >
+                  {/* Left: role + company */}
+                  <div className="col-span-row-left">
+                    <h3
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        fontWeight: "var(--display-weight)",
+                        fontSize: "var(--text-title)",
+                        letterSpacing: "var(--tracking-display)",
+                        color: "var(--color-ink)",
+                        lineHeight: 1.2,
+                        marginBottom: "var(--space-xs)"
+                      }}
+                    >
+                      {exp.role}
+                    </h3>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-body)",
+                        fontSize: "var(--text-sm)",
+                        fontWeight: 500,
+                        color: "var(--color-accent)"
+                      }}
+                    >
+                      {exp.company}
                     </div>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-body)",
+                        fontSize: "var(--text-sm)",
+                        color: "var(--color-muted)",
+                        marginTop: "var(--space-2xs)"
+                      }}
+                    >
+                      {exp.location}
+                    </div>
+                  </div>
 
-                    <div className="flex items-center gap-2 text-xs font-semibold tracking-wider text-zinc-500 dark:text-zinc-400">
-                      <span className="px-2.5 py-1 rounded bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 uppercase">
+                  {/* Right: details */}
+                  <div className="col-span-row-right">
+                    {/* Duration + type badge */}
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "var(--space-sm)",
+                        marginBottom: "var(--space-md)",
+                        fontFamily: "var(--font-body)",
+                        fontSize: "var(--text-sm)",
+                        color: "var(--color-muted)",
+                        flexWrap: "wrap"
+                      }}
+                    >
+                      <span
+                        style={{
+                          padding: "2px 8px",
+                          border: "var(--rule-hair) solid var(--color-rule)",
+                          borderRadius: "2px",
+                          fontSize: "var(--text-xs)"
+                        }}
+                      >
                         {exp.type}
                       </span>
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-3.5 h-3.5" />
+                      <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                        <Calendar className="w-3.5 h-3.5" aria-hidden="true" />
                         {exp.duration}
                       </span>
                     </div>
-                  </div>
 
-                  <ul className="list-disc pl-5 text-sm sm:text-base font-medium text-zinc-600 dark:text-zinc-400 leading-relaxed flex flex-col gap-3.5">
-                    {exp.details.map((detail, dIdx) => (
-                      <li key={dIdx} className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
+                    <ul
+                      style={{
+                        listStyle: "none",
+                        padding: 0,
+                        margin: 0,
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "var(--space-sm)"
+                      }}
+                    >
+                      {exp.details.map((detail, dIdx) => (
+                        <li
+                          key={dIdx}
+                          style={{
+                            fontFamily: "var(--font-body)",
+                            fontSize: "var(--text-sm)",
+                            lineHeight: 1.6,
+                            color: "var(--color-ink-2)",
+                            paddingLeft: "var(--space-md)",
+                            borderLeft: "2px solid var(--color-rule)"
+                          }}
+                        >
+                          {detail}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               ))}
             </div>
 
-            {/* Education timeline cards */}
-            <div className="mt-8 pt-8 border-t border-zinc-200 dark:border-zinc-800">
-              <h3 className="font-extrabold text-xl sm:text-2xl text-zinc-900 dark:text-zinc-50 mb-8 flex items-center gap-2">
-                <GraduationCap className="w-6 h-6 text-indigo-500" />
+            {/* Education */}
+            <div style={{ marginTop: "var(--space-2xl)", paddingTop: "var(--space-2xl)", borderTop: "var(--rule-hair) solid var(--color-rule)" }}>
+              <h3
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontWeight: "var(--display-weight)",
+                  fontSize: "clamp(1.5rem, 2vw + 0.5rem, 2.5rem)",
+                  letterSpacing: "var(--tracking-display)",
+                  color: "var(--color-ink)",
+                  marginBottom: "var(--space-xl)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "var(--space-sm)"
+                }}
+              >
+                <GraduationCap className="w-6 h-6" style={{ color: "var(--color-accent)" }} aria-hidden="true" />
                 Education
               </h3>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))",
+                  gap: "var(--gap-columns)"
+                }}
+              >
                 {educations.map((edu) => (
-                  <div key={edu.degree} className="glass rounded-2xl p-6 sm:p-8 flex flex-col  gap-6">
-                    <div className="flex flex-col gap-2">
-                      <div className="text-xs font-semibold tracking-wider text-indigo-600 dark:text-indigo-400 uppercase">
-                        {edu.duration}
-                      </div>
-                      
-                      <h4 className="font-extrabold text-base sm:text-lg text-zinc-900 dark:text-zinc-50 leading-snug">
-                        {edu.degree}
-                      </h4>
-                      
-                      <div className="text-sm font-bold text-zinc-500 dark:text-zinc-400 leading-tight">
-                        {edu.institution}
-                      </div>
+                  <div
+                    key={edu.degree}
+                    className="crop reveal-trigger"
+                    style={{
+                      backgroundColor: "var(--color-paper-2)",
+                      borderRadius: "3px",
+                      padding: "var(--space-xl)",
+                      boxShadow: "var(--shadow-sheet)"
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontFamily: "var(--font-body)",
+                        fontSize: "var(--text-xs)",
+                        fontWeight: 500,
+                        color: "var(--color-accent)",
+                        marginBottom: "var(--space-sm)"
+                      }}
+                    >
+                      {edu.duration}
                     </div>
-                    
-                    <p className="text-xs sm:text-sm font-medium text-zinc-500 dark:text-zinc-400 leading-relaxed pt-2 border-t border-zinc-200/60 dark:border-zinc-800/80">
+                    <h4
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        fontWeight: "var(--display-weight)",
+                        fontSize: "var(--text-title)",
+                        letterSpacing: "var(--tracking-display)",
+                        color: "var(--color-ink)",
+                        lineHeight: 1.2,
+                        marginBottom: "var(--space-xs)"
+                      }}
+                    >
+                      {edu.degree}
+                    </h4>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-body)",
+                        fontSize: "var(--text-sm)",
+                        fontWeight: 500,
+                        color: "var(--color-ink-2)",
+                        marginBottom: "var(--space-md)"
+                      }}
+                    >
+                      {edu.institution}
+                    </div>
+                    <p
+                      style={{
+                        fontFamily: "var(--font-body)",
+                        fontSize: "var(--text-sm)",
+                        color: "var(--color-muted)",
+                        lineHeight: 1.6,
+                        borderTop: "var(--rule-hair) solid var(--color-rule)",
+                        paddingTop: "var(--space-md)",
+                        margin: 0
+                      }}
+                    >
                       {edu.notes}
                     </p>
                   </div>
                 ))}
               </div>
             </div>
-
           </div>
         </section>
 
-        {/* 5. PROJECTS SECTION */}
-        <section id="projects" className="scroll-mt-24">
-          <div className="flex flex-col gap-12">
-            
-            {/* Title & Filters */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-              <div className="text-center md:text-left">
-                <h2 className="text-2xl sm:text-4xl font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight">
-                  Featured Projects
-                </h2>
-                <div className="h-1.5 w-16 bg-indigo-600 dark:bg-indigo-400 rounded-full mt-3 mx-auto md:mx-0" />
-              </div>
+        {/* ─── 5. PROJECTS — Responsive Index & Filters ─── */}
+        <section
+          id="projects"
+          className="scroll-mt-16"
+          style={{ backgroundColor: "var(--color-paper-2)", paddingTop: "var(--section-gap-s)", paddingBottom: "var(--section-gap-s)" }}
+        >
+          <div className="container">
+            {/* Head + horizontal scrollable filters */}
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6" style={{ marginBottom: "var(--space-2xl)" }}>
+              <h2
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontWeight: "var(--display-weight)",
+                  fontSize: "var(--text-section)",
+                  letterSpacing: "var(--tracking-display)",
+                  color: "var(--color-ink)"
+                }}
+              >
+                Featured Projects
+              </h2>
 
-              {/* Filtering Controls */}
-              <div className="flex justify-center gap-1.5 p-1 rounded-xl bg-zinc-100 dark:bg-zinc-900 self-center md:self-auto border border-zinc-200/50 dark:border-zinc-800/50">
-                {(["all", "web", "mobile"] as const).map((filter) => (
+              {/* Filter controls — horizontally scrollable if needed on 320px screens */}
+              <div
+                role="group"
+                aria-label="Filter projects"
+                className="no-scrollbar"
+                style={{
+                  display: "flex",
+                  gap: "var(--space-xs)",
+                  padding: "var(--space-2xs)",
+                  backgroundColor: "var(--color-paper)",
+                  border: "var(--rule-hair) solid var(--color-rule)",
+                  borderRadius: "3px",
+                  overflowX: "auto",
+                  maxWidth: "100%",
+                  WebkitOverflowScrolling: "touch"
+                }}
+              >
+                {(["all", "web", "mobile"] as const).map(filter => (
                   <button
                     key={filter}
                     onClick={() => setProjectFilter(filter)}
-                    className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-bold tracking-wide uppercase transition-all duration-300 ${
-                      projectFilter === filter
-                        ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50 shadow-sm"
-                        : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
-                    }`}
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: "var(--text-sm)",
+                      fontWeight: 500,
+                      color: projectFilter === filter ? "var(--color-ink)" : "var(--color-muted)",
+                      background: projectFilter === filter ? "var(--color-paper-2)" : "transparent",
+                      border: projectFilter === filter ? "var(--rule-hair) solid var(--color-rule)" : "none",
+                      borderRadius: "2px",
+                      padding: "var(--space-xs) var(--space-md)",
+                      cursor: "pointer",
+                      transition: "all var(--dur-micro) var(--ease-out)",
+                      whiteSpace: "nowrap",
+                      minHeight: 36
+                    }}
                   >
                     {filter}
                   </button>
@@ -817,416 +1150,797 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Projects Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-              {filteredProjects.map((proj) => (
+            {/* Projects index — responsive split grid */}
+            <div className="set" style={{ borderTop: "var(--rule-hair) solid var(--color-ink)" }}>
+              {filteredProjects.map((proj, idx) => (
                 <div
                   key={proj.id}
                   onClick={() => setSelectedProject(proj)}
-                  className="group cursor-pointer flex flex-col justify-between rounded-2xl glass p-6 sm:p-8 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-500/5 dark:hover:shadow-indigo-900/10 border-zinc-200/70 dark:border-zinc-800/60 transition-all duration-300"
+                  className="split-grid reveal-trigger"
+                  style={{
+                    "--i": idx,
+                    cursor: "pointer",
+                    padding: "var(--space-xl) 0",
+                    transition: "background var(--dur-short) var(--ease-out)"
+                  } as React.CSSProperties}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`View details for ${proj.title}`}
+                  onKeyDown={e => { if (e.key === "Enter" || e.key === " ") setSelectedProject(proj); }}
                 >
-                  <div className="flex flex-col gap-4">
-                    
-                    {/* Category Label and Icon */}
-                    <div className="flex items-center justify-between">
-                      <div className="flex flex-wrap gap-1.5">
-                        {proj.categories.map((cat) => (
-                          <span key={cat} className="text-[10px] sm:text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase bg-indigo-500/10 dark:bg-indigo-500/5 px-2.5 py-1 rounded">
-                            {cat === "mobile" ? "Mobile Client" : cat === "web" ? "Web App" : "Design / Brand"}
-                          </span>
-                        ))}
-                      </div>
-                      
-                      <div className="p-2 rounded bg-zinc-100 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 group-hover:text-indigo-500 transition-colors flex gap-1">
-                        {proj.categories.includes("mobile") && <Smartphone className="w-4 h-4" />}
-                        {proj.categories.includes("web") && <Globe className="w-4 h-4" />}
-                        {proj.categories.includes("design") && <Palette className="w-4 h-4" />}
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col gap-1.5">
-                      <h3 className="font-extrabold text-base sm:text-lg text-zinc-900 dark:text-zinc-50 leading-snug group-hover:text-indigo-500 transition-colors">
-                        {proj.title}
-                      </h3>
-                      <span className="text-xs font-semibold text-zinc-400 dark:text-zinc-500">{proj.duration}</span>
-                    </div>
-
-                    <p className="text-xs sm:text-sm font-medium text-zinc-500 dark:text-zinc-400 leading-relaxed line-clamp-3">
-                      {proj.summary}
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col gap-4 mt-6">
-                    {/* Tech Badges */}
-                    <div className="flex flex-wrap gap-1.5">
-                      {proj.tech.slice(0, 3).map((t) => (
-                        <span key={t} className="text-[10px] font-bold text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-900 px-2 py-1 rounded">
-                          {t}
+                  {/* Category + title */}
+                  <div className="col-span-row-left">
+                    <div
+                      style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: "var(--space-xs)",
+                        marginBottom: "var(--space-sm)"
+                      }}
+                    >
+                      {proj.categories.map(cat => (
+                        <span
+                          key={cat}
+                          style={{
+                            fontFamily: "var(--font-body)",
+                            fontSize: "var(--text-xs)",
+                            fontWeight: 500,
+                            color: "var(--color-accent)",
+                            padding: "2px 8px",
+                            border: "var(--rule-hair) solid var(--color-accent)",
+                            borderRadius: "2px"
+                          }}
+                        >
+                          {cat === "mobile" ? "Mobile" : cat === "web" ? "Web" : "Design"}
                         </span>
                       ))}
-                      {proj.tech.length > 3 && (
-                        <span className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 px-2 py-1 rounded">
-                          +{proj.tech.length - 3} more
-                        </span>
-                      )}
                     </div>
 
-                    <div className="flex items-center gap-1 text-xs font-bold text-indigo-600 dark:text-indigo-400 group-hover:translate-x-1 transition-transform">
-                      View Details
-                      <ArrowRight className="w-3.5 h-3.5" />
+                    <h3
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        fontWeight: "var(--display-weight)",
+                        fontSize: "var(--text-title)",
+                        letterSpacing: "var(--tracking-display)",
+                        color: "var(--color-ink)",
+                        lineHeight: 1.2
+                      }}
+                    >
+                      {proj.title}
+                    </h3>
+                  </div>
+
+                  {/* Summary + tech + action */}
+                  <div
+                    className="col-span-row-right"
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      gap: "var(--space-md)"
+                    }}
+                  >
+                    <div>
+                      <div
+                        style={{
+                          fontFamily: "var(--font-body)",
+                          fontSize: "var(--text-xs)",
+                          color: "var(--color-muted)",
+                          marginBottom: "var(--space-xs)",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 4
+                        }}
+                      >
+                        <Calendar className="w-3 h-3" aria-hidden="true" />
+                        {proj.duration}
+                      </div>
+                      <p
+                        style={{
+                          fontFamily: "var(--font-body)",
+                          fontSize: "var(--text-sm)",
+                          color: "var(--color-ink-2)",
+                          lineHeight: 1.6,
+                          margin: 0
+                        }}
+                      >
+                        {proj.summary}
+                      </p>
+                    </div>
+
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "var(--space-sm)" }}>
+                      <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--space-xs)" }}>
+                        {proj.tech.slice(0, 3).map(t => (
+                          <span
+                            key={t}
+                            style={{
+                              fontFamily: "var(--font-body)",
+                              fontSize: "var(--text-xs)",
+                              fontWeight: 400,
+                              color: "var(--color-muted)",
+                              backgroundColor: "var(--color-paper-3)",
+                              padding: "2px 8px",
+                              borderRadius: "2px"
+                            }}
+                          >
+                            {t}
+                          </span>
+                        ))}
+                        {proj.tech.length > 3 && (
+                          <span style={{ fontFamily: "var(--font-body)", fontSize: "var(--text-xs)", color: "var(--color-muted)" }}>
+                            +{proj.tech.length - 3} more
+                          </span>
+                        )}
+                      </div>
+                      <span
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "var(--space-xs)",
+                          fontFamily: "var(--font-body)",
+                          fontSize: "var(--text-sm)",
+                          fontWeight: 500,
+                          color: "var(--color-accent)"
+                        }}
+                      >
+                        View details
+                        <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                      </span>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
-
           </div>
         </section>
 
-        {/* 6. CONTACT SECTION */}
-        <section id="contact" className="scroll-mt-24">
-          <div className="flex flex-col gap-12">
-            
-            {/* Title */}
-            <div className="text-center md:text-left">
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight">
-                Get In Touch
-              </h2>
-              <div className="h-1.5 w-16 bg-indigo-600 dark:bg-indigo-400 rounded-full mt-3 mx-auto md:mx-0" />
-            </div>
+        {/* ─── 6. CONTACT — Responsive Split Layout ─── */}
+        <section id="contact" className="scroll-mt-16">
+          <div className="container">
+            <div className="split-grid">
+              {/* Head block */}
+              <div className="col-span-head reveal-trigger">
+                <h2
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontWeight: "var(--display-weight)",
+                    fontSize: "var(--text-section)",
+                    letterSpacing: "var(--tracking-display)",
+                    color: "var(--color-ink)"
+                  }}
+                >
+                  Get In Touch
+                </h2>
+                <div className="guide guide-draw" style={{ marginTop: "var(--space-md)", width: "48px" }} />
 
-            {/* Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-              
-              {/* Contact information details */}
-              <div className="lg:col-span-5 flex flex-col gap-8">
-                
-                <div className="flex flex-col gap-4">
-                  <h3 className="font-extrabold text-xl sm:text-2xl text-zinc-900 dark:text-zinc-50">
-                    Let&apos;s discuss your product
-                  </h3>
-                  
-                  <p className="text-sm sm:text-base font-medium text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                    I am actively seeking Frontend Developer roles and collaborations. Feel free to shoot me an email, give me a call, or connect with me via LinkedIn. I&apos;d love to chat!
-                  </p>
-                </div>
-
-                <div className="flex flex-col gap-6">
-                  
-                  <div className="flex items-center gap-4 text-zinc-600 dark:text-zinc-400">
-                    <div className="p-3.5 rounded-xl bg-indigo-500/10 dark:bg-indigo-500/5 text-indigo-600 dark:text-indigo-400 shadow-sm">
-                      <Mail className="w-5 h-5" />
-                    </div>
-                    <div className="flex flex-col text-xs sm:text-sm">
-                      <span className="font-extrabold text-zinc-950 dark:text-zinc-50">Email</span>
-                      <a href="mailto:rsy81179105@gmail.com" className="hover:text-indigo-500 hover:underline">rsy81179105@gmail.com</a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4 text-zinc-600 dark:text-zinc-400">
-                    <div className="p-3.5 rounded-xl bg-indigo-500/10 dark:bg-indigo-500/5 text-indigo-600 dark:text-indigo-400 shadow-sm">
-                      <Phone className="w-5 h-5" />
-                    </div>
-                    <div className="flex flex-col text-xs sm:text-sm">
-                      <span className="font-extrabold text-zinc-950 dark:text-zinc-50">Phone</span>
-                      <a href="tel:+919315283938" className="hover:text-indigo-500 hover:underline">+91 9315283938</a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4 text-zinc-600 dark:text-zinc-400">
-                    <div className="p-3.5 rounded-xl bg-indigo-500/10 dark:bg-indigo-500/5 text-indigo-600 dark:text-indigo-400 shadow-sm">
-                      <MapPin className="w-5 h-5" />
-                    </div>
-                    <div className="flex flex-col text-xs sm:text-sm">
-                      <span className="font-extrabold text-zinc-950 dark:text-zinc-50">Address</span>
-                      <span>Jharera Village, Delhi Cantt, New Delhi - 110010</span>
-                    </div>
-                  </div>
-
-                </div>
-
-                <hr className="border-zinc-200 dark:border-zinc-800" />
-
-                {/* Social presence */}
-                <div className="flex flex-col gap-3">
-                  <span className="text-xs uppercase font-extrabold text-zinc-400 tracking-wider">Social Presence</span>
-                  <div className="flex gap-4">
-                    <a
-                      href="https://linkedin.com/in/rishi2514"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:text-indigo-500 dark:hover:text-indigo-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-all shadow-sm"
+                <div style={{ marginTop: "var(--space-2xl)", display: "flex", flexDirection: "column", gap: "var(--space-xl)" }}>
+                  <div>
+                    <h3
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        fontWeight: "var(--display-weight)",
+                        fontSize: "var(--text-title)",
+                        letterSpacing: "var(--tracking-display)",
+                        color: "var(--color-ink)",
+                        marginBottom: "var(--space-sm)"
+                      }}
                     >
-                      <LinkedInIcon className="w-5 h-5" />
-                    </a>
-                    
-                    <a
-                      href="https://github.com/rishi2514"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:text-indigo-500 dark:hover:text-indigo-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-all shadow-sm"
+                      Let&apos;s discuss your product
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: "var(--font-body)",
+                        fontSize: "var(--text-sm)",
+                        color: "var(--color-ink-2)",
+                        lineHeight: 1.65,
+                        margin: 0,
+                        maxWidth: "48ch"
+                      }}
                     >
-                      <GitHubIcon className="w-5 h-5" />
-                    </a>
+                      I am actively seeking Frontend Developer roles and collaborations. Feel free to shoot me an email, give me a call, or connect with me via LinkedIn. I&apos;d love to chat!
+                    </p>
+                  </div>
+
+                  {/* Contact info */}
+                  <div className="set" style={{ borderTop: "var(--rule-hair) solid var(--color-rule)" }}>
+                    {[
+                      {
+                        icon: <Mail className="w-4 h-4" aria-hidden="true" />,
+                        label: "Email",
+                        value: <a href="mailto:rsy81179105@gmail.com" style={{ color: "inherit", wordBreak: "break-all" }}>rsy81179105@gmail.com</a>
+                      },
+                      {
+                        icon: <Phone className="w-4 h-4" aria-hidden="true" />,
+                        label: "Phone",
+                        value: <a href="tel:+919315283938" style={{ color: "inherit" }}>+91 9315283938</a>
+                      },
+                      {
+                        icon: <MapPin className="w-4 h-4" aria-hidden="true" />,
+                        label: "Address",
+                        value: "Jharera Village, Delhi Cantt, New Delhi - 110010"
+                      }
+                    ].map(item => (
+                      <div
+                        key={item.label}
+                        style={{
+                          display: "flex",
+                          alignItems: "flex-start",
+                          gap: "var(--space-md)",
+                          padding: "var(--space-md) 0"
+                        }}
+                      >
+                        <span style={{ color: "var(--color-accent)", flexShrink: 0, marginTop: 2 }}>{item.icon}</span>
+                        <div style={{ minWidth: 0 }}>
+                          <div style={{ fontFamily: "var(--font-body)", fontSize: "var(--text-xs)", fontWeight: 500, color: "var(--color-muted)" }}>
+                            {item.label}
+                          </div>
+                          <div style={{ fontFamily: "var(--font-body)", fontSize: "var(--text-sm)", color: "var(--color-ink)" }}>
+                            {item.value}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Social presence */}
+                  <div>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-body)",
+                        fontSize: "var(--text-xs)",
+                        fontWeight: 500,
+                        color: "var(--color-muted)",
+                        marginBottom: "var(--space-md)"
+                      }}
+                    >
+                      Social presence
+                    </div>
+                    <div style={{ display: "flex", gap: "var(--space-md)" }}>
+                      <a
+                        href="https://linkedin.com/in/rishi2514"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn"
+                        aria-label="LinkedIn profile"
+                        style={{ padding: "0 14px", minHeight: 44 }}
+                      >
+                        <LinkedInIcon className="w-5 h-5" />
+                      </a>
+                      <a
+                        href="https://github.com/rishi2514"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn"
+                        aria-label="GitHub profile"
+                        style={{ padding: "0 14px", minHeight: 44 }}
+                      >
+                        <GitHubIcon className="w-5 h-5" />
+                      </a>
+                    </div>
                   </div>
                 </div>
-
               </div>
 
-              {/* Interactive Contact Form */}
-              <div className="lg:col-span-7 glass rounded-2xl p-6 sm:p-8">
-                <form onSubmit={handleContactSubmit} className="flex flex-col gap-5">
-                  
-                  {/* Name and Email inputs side-by-side */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="flex flex-col gap-1.5">
-                      <label htmlFor="name" className="text-xs sm:text-sm font-bold text-zinc-700 dark:text-zinc-300">Name</label>
+              {/* Contact form */}
+              <div className="col-span-body reveal-trigger">
+                <div
+                  className="crop"
+                  style={{
+                    backgroundColor: "var(--color-paper-2)",
+                    borderRadius: "3px",
+                    padding: "var(--space-xl)",
+                    boxShadow: "var(--shadow-sheet)"
+                  }}
+                >
+                  <form onSubmit={handleContactSubmit} style={{ display: "flex", flexDirection: "column", gap: "var(--space-lg)" }}>
+                    {/* Name + Email — 2 columns on tablet/desktop, stacked on mobile */}
+                    <div className="contact-fields-grid">
+                      <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-xs)" }}>
+                        <label
+                          htmlFor="name"
+                          style={{ fontFamily: "var(--font-body)", fontSize: "var(--text-sm)", fontWeight: 500, color: "var(--color-ink-2)" }}
+                        >
+                          Name
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          className={`studio-input${formErrors.name ? " error" : ""}`}
+                          placeholder="John Doe"
+                          autoComplete="name"
+                        />
+                        {formErrors.name && (
+                          <span style={{ display: "flex", alignItems: "center", gap: 4, fontSize: "var(--text-xs)", fontWeight: 500, color: "var(--color-error)" }}>
+                            <AlertCircle className="w-3.5 h-3.5" aria-hidden="true" />
+                            {formErrors.name}
+                          </span>
+                        )}
+                      </div>
+
+                      <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-xs)" }}>
+                        <label
+                          htmlFor="email"
+                          style={{ fontFamily: "var(--font-body)", fontSize: "var(--text-sm)", fontWeight: 500, color: "var(--color-ink-2)" }}
+                        >
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          className={`studio-input${formErrors.email ? " error" : ""}`}
+                          placeholder="john@example.com"
+                          autoComplete="email"
+                        />
+                        {formErrors.email && (
+                          <span style={{ display: "flex", alignItems: "center", gap: 4, fontSize: "var(--text-xs)", fontWeight: 500, color: "var(--color-error)" }}>
+                            <AlertCircle className="w-3.5 h-3.5" aria-hidden="true" />
+                            {formErrors.email}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Subject */}
+                    <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-xs)" }}>
+                      <label
+                        htmlFor="subject"
+                        style={{ fontFamily: "var(--font-body)", fontSize: "var(--text-sm)", fontWeight: 500, color: "var(--color-ink-2)" }}
+                      >
+                        Subject
+                      </label>
                       <input
                         type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
                         onChange={handleInputChange}
-                        className={`px-4 py-3 rounded-xl border ${
-                          formErrors.name ? "border-red-500 bg-red-500/5" : "border-zinc-200 dark:border-zinc-800"
-                        } focus:outline-none focus:ring-2 focus:ring-indigo-500/30 text-sm bg-transparent`}
-                        placeholder="John Doe"
+                        className={`studio-input${formErrors.subject ? " error" : ""}`}
+                        placeholder="Project Discussion"
+                        autoComplete="off"
                       />
-                      {formErrors.name && (
-                        <span className="text-xs text-red-500 font-semibold flex items-center gap-1">
-                          <AlertCircle className="w-3.5 h-3.5" />
-                          {formErrors.name}
+                      {formErrors.subject && (
+                        <span style={{ display: "flex", alignItems: "center", gap: 4, fontSize: "var(--text-xs)", fontWeight: 500, color: "var(--color-error)" }}>
+                          <AlertCircle className="w-3.5 h-3.5" aria-hidden="true" />
+                          {formErrors.subject}
                         </span>
                       )}
                     </div>
 
-                    <div className="flex flex-col gap-1.5">
-                      <label htmlFor="email" className="text-xs sm:text-sm font-bold text-zinc-700 dark:text-zinc-300">Email</label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
+                    {/* Message */}
+                    <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-xs)" }}>
+                      <label
+                        htmlFor="message"
+                        style={{ fontFamily: "var(--font-body)", fontSize: "var(--text-sm)", fontWeight: 500, color: "var(--color-ink-2)" }}
+                      >
+                        Message
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows={5}
+                        value={formData.message}
                         onChange={handleInputChange}
-                        className={`px-4 py-3 rounded-xl border ${
-                          formErrors.email ? "border-red-500 bg-red-500/5" : "border-zinc-200 dark:border-zinc-800"
-                        } focus:outline-none focus:ring-2 focus:ring-indigo-500/30 text-sm bg-transparent`}
-                        placeholder="john@example.com"
+                        className={`studio-textarea${formErrors.message ? " error" : ""}`}
+                        placeholder="Hi Rishi, I'd like to talk about..."
                       />
-                      {formErrors.email && (
-                        <span className="text-xs text-red-500 font-semibold flex items-center gap-1">
-                          <AlertCircle className="w-3.5 h-3.5" />
-                          {formErrors.email}
+                      {formErrors.message && (
+                        <span style={{ display: "flex", alignItems: "center", gap: 4, fontSize: "var(--text-xs)", fontWeight: 500, color: "var(--color-error)" }}>
+                          <AlertCircle className="w-3.5 h-3.5" aria-hidden="true" />
+                          {formErrors.message}
                         </span>
                       )}
                     </div>
-                  </div>
 
-                  {/* Subject input */}
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="subject" className="text-xs sm:text-sm font-bold text-zinc-700 dark:text-zinc-300">Subject</label>
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      className={`px-4 py-3 rounded-xl border ${
-                        formErrors.subject ? "border-red-500 bg-red-500/5" : "border-zinc-200 dark:border-zinc-800"
-                      } focus:outline-none focus:ring-2 focus:ring-indigo-500/30 text-sm bg-transparent`}
-                      placeholder="Project Discussion"
-                    />
-                    {formErrors.subject && (
-                      <span className="text-xs text-red-500 font-semibold flex items-center gap-1">
-                        <AlertCircle className="w-3.5 h-3.5" />
-                        {formErrors.subject}
-                      </span>
+                    {/* Submit button — full width with touch target */}
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="btn btn--primary"
+                      style={{
+                        width: "100%",
+                        justifyContent: "center",
+                        minHeight: 48,
+                        opacity: isSubmitting ? 0.6 : 1,
+                        cursor: isSubmitting ? "not-allowed" : "pointer"
+                      }}
+                    >
+                      {isSubmitting ? "Sending Message..." : (
+                        <>
+                          Send Message
+                          <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                        </>
+                      )}
+                    </button>
+
+                    {/* Success state */}
+                    {submitSuccess && (
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          gap: "var(--space-xs)",
+                          padding: "var(--space-md)",
+                          backgroundColor: "color-mix(in oklab, var(--color-success) 8%, transparent)",
+                          border: "var(--rule-hair) solid color-mix(in oklab, var(--color-success) 30%, transparent)",
+                          borderRadius: "2px",
+                          fontFamily: "var(--font-body)",
+                          fontSize: "var(--text-sm)",
+                          fontWeight: 500,
+                          color: "var(--color-success)",
+                          textAlign: "center"
+                        }}
+                      >
+                        <CheckCircle className="w-4 h-4" aria-hidden="true" />
+                        Message sent successfully! I&apos;ll get back to you shortly. This is a mock form, so no actual message was sent. But I appreciate the thought!
+                      </div>
                     )}
-                  </div>
-
-                  {/* Message input */}
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="message" className="text-xs sm:text-sm font-bold text-zinc-700 dark:text-zinc-300">Message</label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={5}
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      className={`px-4 py-3 rounded-xl border ${
-                        formErrors.message ? "border-red-500 bg-red-500/5" : "border-zinc-200 dark:border-zinc-800"
-                      } focus:outline-none focus:ring-2 focus:ring-indigo-500/30 text-sm bg-transparent resize-none`}
-                      placeholder="Hi Rishi, I'd like to talk about..."
-                    />
-                    {formErrors.message && (
-                      <span className="text-xs text-red-500 font-semibold flex items-center gap-1">
-                        <AlertCircle className="w-3.5 h-3.5" />
-                        {formErrors.message}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="mt-2 w-full py-4 text-center rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold transition-all shadow-md flex items-center justify-center gap-2 hover:scale-[1.01] hover:shadow-lg disabled:opacity-50 disabled:hover:scale-100"
-                  >
-                    {isSubmitting ? (
-                      "Sending Message..."
-                    ) : (
-                      <>
-                        Send Message
-                        <ArrowRight className="w-4 h-4" />
-                      </>
-                    )}
-                  </button>
-
-                  {/* Success State */}
-                  {submitSuccess && (
-                    <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-bold text-sm text-center flex items-center justify-center gap-2 animate-pulse">
-                      <CheckCircle className="w-4 h-4" />
-                      Message sent successfully! I&apos;ll get back to you shortly. This is a mock form, so no actual message was sent. But I appreciate the thought!
-                    </div>
-                  )}
-
-                </form>
+                  </form>
+                </div>
               </div>
-
             </div>
-
           </div>
         </section>
 
       </main>
 
-      {/* FOOTER */}
-      <footer className="mt-24 border-t border-zinc-200 dark:border-zinc-800 bg-zinc-100/50 dark:bg-zinc-950/20 py-8 text-center text-xs sm:text-sm font-semibold text-zinc-500 dark:text-zinc-400 z-10">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-1.5">
-            <span>© {new Date().getFullYear()} Rishi Kumar Yadav. All rights reserved.</span>
-          </div>
+      {/* ═══ FOOTER — colophon block ═══ */}
+      <footer
+        className="proof"
+        style={{
+          marginTop: "var(--section-gap-l)",
+          borderTop: "var(--rule-hair) solid var(--color-rule)",
+          paddingTop: "var(--space-2xl)",
+          paddingBottom: "var(--space-2xl)"
+        }}
+      >
+        <div className="container">
+          <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-lg)" }}>
+            {/* Wordmark */}
+            <div>
+              <span
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontWeight: "var(--display-weight)",
+                  fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
+                  letterSpacing: "var(--tracking-display)",
+                  color: "var(--color-ink)",
+                  display: "block",
+                  overflowWrap: "break-word"
+                }}
+              >
+                Rishi Kumar Yadav
+              </span>
+              <div className="guide" style={{ width: "100%", marginTop: "var(--space-sm)" }} />
+            </div>
 
-          <div className="flex items-center gap-1">
-            <span>Built with</span>
-            <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 animate-pulse" />
-            <span>using Next.js & Tailwind CSS v4</span>
-          </div>
+            {/* Footer links + copyright — responsive stack on mobile */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "var(--space-xs)",
+                  fontFamily: "var(--font-body)",
+                  fontSize: "var(--text-sm)",
+                  color: "var(--color-muted)"
+                }}
+              >
+                <span>Built with</span>
+                <Heart className="w-3.5 h-3.5" style={{ color: "var(--color-accent)" }} aria-hidden="true" />
+                <span>using Next.js &amp; Tailwind CSS v4</span>
+              </div>
 
-          <div className="flex gap-4">
-            <a href="https://linkedin.com/in/rishi2514" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-500">LinkedIn</a>
-            <a href="https://github.com/rishi2514" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-500">GitHub</a>
+              <div style={{ display: "flex", gap: "var(--space-lg)", flexWrap: "wrap" }}>
+                <a
+                  href="https://linkedin.com/in/rishi2514"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "var(--text-sm)",
+                    fontWeight: 400,
+                    color: "var(--color-muted)",
+                    textDecoration: "none"
+                  }}
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="https://github.com/rishi2514"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "var(--text-sm)",
+                    fontWeight: 400,
+                    color: "var(--color-muted)",
+                    textDecoration: "none"
+                  }}
+                >
+                  GitHub
+                </a>
+              </div>
+
+              <p
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "var(--text-sm)",
+                  color: "var(--color-muted)",
+                  margin: 0
+                }}
+              >
+                &copy; {new Date().getFullYear()} Rishi Kumar Yadav.
+              </p>
+            </div>
           </div>
         </div>
       </footer>
 
-      {/* PROJECT DETAILS MODAL / DRAWER */}
+      {/* ═══ PROJECT DETAILS MODAL — Fully responsive drawer on mobile ═══ */}
       {selectedProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/80 backdrop-blur-sm overflow-y-auto">
-          <div className="relative w-full max-w-4xl rounded-2xl glass p-6 sm:p-8 flex flex-col gap-6 max-h-[90vh] overflow-y-auto shadow-2xl border-zinc-200 dark:border-zinc-800 animate-in fade-in zoom-in-95 duration-200">
-            
-            {/* Close Button */}
+        <div
+          className="modal-backdrop"
+          onClick={e => { if (e.target === e.currentTarget) setSelectedProject(null); }}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Project details: ${selectedProject.title}`}
+        >
+          <div className="crop modal-box">
+            {/* Close */}
             <button
               onClick={() => setSelectedProject(null)}
-              className="absolute top-4 right-4 p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-all"
-              aria-label="Close Modal"
+              className="btn"
+              aria-label="Close modal"
+              style={{
+                position: "absolute",
+                top: "var(--space-md)",
+                right: "var(--space-md)",
+                minHeight: 40,
+                minWidth: 40,
+                padding: "0 10px"
+              }}
             >
-              <X className="w-5 h-5" />
+              <X className="w-5 h-5" aria-hidden="true" />
             </button>
 
-            {/* Header info */}
-            <div className="flex flex-col gap-1.5 pr-10">
-              <div className="flex flex-wrap gap-1.5">
-                {selectedProject.categories.map((cat) => (
-                  <span key={cat} className="text-[10px] sm:text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase bg-indigo-500/10 dark:bg-indigo-500/5 px-2.5 py-1 rounded self-start">
-                    {cat === "mobile" ? "Mobile Application" : cat === "web" ? "Web Application" : "Design / Multimedia"}
-                  </span>
-                ))}
-              </div>
-              
-              <h3 className="font-extrabold text-xl sm:text-3xl text-zinc-900 dark:text-zinc-50 mt-1 leading-snug">
-                {selectedProject.title}
-              </h3>
-
-              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-2 text-xs sm:text-sm font-bold text-zinc-500">
-                <span className="text-indigo-600 dark:text-indigo-400">{selectedProject.role}</span>
-                <span className="h-1 w-1 rounded-full bg-zinc-400" />
-                <span className="flex items-center gap-1">
-                  <Calendar className="w-3.5 h-3.5" />
-                  {selectedProject.duration}
+            {/* Category badges */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--space-xs)", marginBottom: "var(--space-md)", paddingRight: "var(--space-2xl)" }}>
+              {selectedProject.categories.map(cat => (
+                <span
+                  key={cat}
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "var(--text-xs)",
+                    fontWeight: 500,
+                    color: "var(--color-accent)",
+                    padding: "2px 8px",
+                    border: "var(--rule-hair) solid var(--color-accent)",
+                    borderRadius: "2px"
+                  }}
+                >
+                  {cat === "mobile" ? "Mobile Application" : cat === "web" ? "Web Application" : "Design / Multimedia"}
                 </span>
-              </div>
+              ))}
             </div>
 
-            <hr className="border-zinc-200 dark:border-zinc-800" />
+            {/* Title */}
+            <h3
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: "var(--display-weight)",
+                fontSize: "clamp(1.5rem, 3.5vw + 0.5rem, 2.75rem)",
+                letterSpacing: "var(--tracking-display)",
+                color: "var(--color-ink)",
+                lineHeight: 1.1,
+                marginBottom: "var(--space-sm)",
+                paddingRight: "var(--space-xl)",
+                overflowWrap: "break-word"
+              }}
+            >
+              {selectedProject.title}
+            </h3>
 
-            {/* Modal Body */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              
-              {/* Main descriptions and features */}
-              <div className="lg:col-span-8 flex flex-col gap-6">
-                
-                <div className="flex flex-col gap-2">
-                  <h4 className="font-extrabold text-base sm:text-lg text-zinc-900 dark:text-zinc-50">
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                gap: "var(--space-sm)",
+                marginBottom: "var(--space-lg)",
+                fontFamily: "var(--font-body)",
+                fontSize: "var(--text-sm)",
+                color: "var(--color-muted)"
+              }}
+            >
+              <span style={{ color: "var(--color-accent)", fontWeight: 500 }}>{selectedProject.role}</span>
+              <span>·</span>
+              <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                <Calendar className="w-3.5 h-3.5" aria-hidden="true" />
+                {selectedProject.duration}
+              </span>
+            </div>
+
+            <div className="guide" style={{ marginBottom: "var(--space-xl)" }} />
+
+            {/* Body: 2 columns on desktop, responsive stack on mobile */}
+            <div className="modal-content-grid">
+              {/* Main content */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-xl)" }}>
+                <div>
+                  <h4
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontWeight: "var(--display-weight)",
+                      fontSize: "var(--text-title)",
+                      letterSpacing: "var(--tracking-display)",
+                      color: "var(--color-ink)",
+                      marginBottom: "var(--space-md)"
+                    }}
+                  >
                     Project Overview
                   </h4>
-                  <p className="text-sm sm:text-base font-medium text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                  <p
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: "var(--text-sm)",
+                      color: "var(--color-ink-2)",
+                      lineHeight: 1.65,
+                      margin: 0
+                    }}
+                  >
                     {selectedProject.description}
                   </p>
                 </div>
 
-                <div className="flex flex-col gap-3">
-                  <h4 className="font-extrabold text-base sm:text-lg text-zinc-900 dark:text-zinc-50">
+                <div>
+                  <h4
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontWeight: "var(--display-weight)",
+                      fontSize: "var(--text-title)",
+                      letterSpacing: "var(--tracking-display)",
+                      color: "var(--color-ink)",
+                      marginBottom: "var(--space-md)"
+                    }}
+                  >
                     Key Features Developed
                   </h4>
-                  
-                  <ul className="list-disc pl-5 text-sm sm:text-base font-medium text-zinc-600 dark:text-zinc-400 leading-relaxed flex flex-col gap-2.5">
+                  <ul
+                    style={{
+                      listStyle: "none",
+                      padding: 0,
+                      margin: 0,
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "var(--space-sm)"
+                    }}
+                  >
                     {selectedProject.features.map((feature, fIdx) => (
-                      <li key={fIdx}>{feature}</li>
+                      <li
+                        key={fIdx}
+                        style={{
+                          fontFamily: "var(--font-body)",
+                          fontSize: "var(--text-sm)",
+                          color: "var(--color-ink-2)",
+                          lineHeight: 1.6,
+                          paddingLeft: "var(--space-md)",
+                          borderLeft: "2px solid var(--color-rule)"
+                        }}
+                      >
+                        {feature}
+                      </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="flex flex-col gap-3">
-                  <h4 className="font-extrabold text-base sm:text-lg text-zinc-900 dark:text-zinc-50">
-                    Milestones & Impact
+                <div>
+                  <h4
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontWeight: "var(--display-weight)",
+                      fontSize: "var(--text-title)",
+                      letterSpacing: "var(--tracking-display)",
+                      color: "var(--color-ink)",
+                      marginBottom: "var(--space-md)"
+                    }}
+                  >
+                    Milestones &amp; Impact
                   </h4>
-                  
-                  <ul className="list-disc pl-5 text-sm sm:text-base font-medium text-zinc-600 dark:text-zinc-400 leading-relaxed flex flex-col gap-2.5">
+                  <ul
+                    style={{
+                      listStyle: "none",
+                      padding: 0,
+                      margin: 0,
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "var(--space-sm)"
+                    }}
+                  >
                     {selectedProject.highlights.map((highlight, hIdx) => (
-                      <li key={hIdx} className="text-zinc-900 dark:text-zinc-100">{highlight}</li>
+                      <li
+                        key={hIdx}
+                        style={{
+                          fontFamily: "var(--font-body)",
+                          fontSize: "var(--text-sm)",
+                          color: "var(--color-ink)",
+                          lineHeight: 1.6,
+                          paddingLeft: "var(--space-md)",
+                          borderLeft: "2px solid var(--color-accent)"
+                        }}
+                      >
+                        {highlight}
+                      </li>
                     ))}
                   </ul>
                 </div>
-
               </div>
 
               {/* Sidebar specifications */}
-              <div className="lg:col-span-4 flex flex-col gap-6 p-6 rounded-2xl bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200/60 dark:border-zinc-800/80">
-                <h4 className="font-extrabold text-base text-zinc-900 dark:text-zinc-50">
+              <div
+                style={{
+                  backgroundColor: "var(--color-paper-2)",
+                  borderRadius: "3px",
+                  padding: "var(--space-lg)",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "var(--space-md)"
+                }}
+              >
+                <h4
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontWeight: "var(--display-weight)",
+                    fontSize: "var(--text-title)",
+                    letterSpacing: "var(--tracking-display)",
+                    color: "var(--color-ink)",
+                    borderBottom: "var(--rule-hair) solid var(--color-ink)",
+                    paddingBottom: "var(--space-sm)"
+                  }}
+                >
                   Specifications
                 </h4>
 
-                <div className="flex flex-col gap-4 text-xs sm:text-sm">
-                  
-                  <div className="flex flex-col gap-1">
-                    <span className="font-extrabold text-zinc-400 uppercase tracking-wider text-[10px]">Framework / Engine</span>
-                    <span className="font-bold text-zinc-800 dark:text-zinc-200">
+                <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-md)" }}>
+                  <div>
+                    <div style={{ fontFamily: "var(--font-body)", fontSize: "var(--text-xs)", fontWeight: 500, color: "var(--color-muted)", marginBottom: 4 }}>
+                      Framework
+                    </div>
+                    <div style={{ fontFamily: "var(--font-body)", fontSize: "var(--text-sm)", fontWeight: 500, color: "var(--color-ink)" }}>
                       {selectedProject.categories.includes("mobile") && selectedProject.categories.includes("web")
                         ? "React Native & Next.js"
                         : selectedProject.categories.includes("mobile")
-                        ? "React Native (Expo)"
-                        : selectedProject.categories.includes("web")
-                        ? "Next.js (React)"
-                        : "Adobe / Multimedia"}
-                    </span>
+                          ? "React Native (Expo)"
+                          : selectedProject.categories.includes("web")
+                            ? "Next.js (React)"
+                            : "Adobe / Multimedia"}
+                    </div>
                   </div>
 
-                  <div className="flex flex-col gap-1">
-                    <span className="font-extrabold text-zinc-400 uppercase tracking-wider text-[10px]">Technologies Used</span>
-                    <div className="flex flex-wrap gap-1.5 mt-1">
-                      {selectedProject.tech.map((t) => (
-                        <span key={t} className="text-[10px] font-bold text-zinc-700 dark:text-zinc-300 bg-zinc-200/50 dark:bg-zinc-800/50 px-2 py-1 rounded">
+                  <div>
+                    <div style={{ fontFamily: "var(--font-body)", fontSize: "var(--text-xs)", fontWeight: 500, color: "var(--color-muted)", marginBottom: "var(--space-xs)" }}>
+                      Technologies
+                    </div>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--space-2xs)" }}>
+                      {selectedProject.tech.map(t => (
+                        <span
+                          key={t}
+                          style={{
+                            fontFamily: "var(--font-body)",
+                            fontSize: "var(--text-xs)",
+                            fontWeight: 400,
+                            color: "var(--color-ink-2)",
+                            backgroundColor: "var(--color-paper-3)",
+                            padding: "2px 8px",
+                            borderRadius: "2px"
+                          }}
+                        >
                           {t}
                         </span>
                       ))}
@@ -1234,41 +1948,46 @@ export default function Home() {
                   </div>
 
                   {/* Links */}
-                  <div className="flex flex-col gap-2 pt-2 border-t border-zinc-200 dark:border-zinc-800">
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "var(--space-sm)",
+                      paddingTop: "var(--space-md)",
+                      borderTop: "var(--rule-hair) solid var(--color-rule)"
+                    }}
+                  >
                     {selectedProject.link && (
                       <a
                         href={selectedProject.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full py-2.5 rounded-xl bg-zinc-900 dark:bg-zinc-50 text-white dark:text-zinc-950 font-bold text-center hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all flex items-center justify-center gap-1.5"
+                        className="btn btn--primary"
+                        style={{ width: "100%", justifyContent: "center", minHeight: 44 }}
                       >
-                        <ExternalLink className="w-4 h-4" />
+                        <ExternalLink className="w-4 h-4" aria-hidden="true" />
                         Visit Project
                       </a>
                     )}
-                    
                     {selectedProject.github && (
                       <a
                         href={selectedProject.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 font-bold text-center hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-all flex items-center justify-center gap-1.5"
+                        className="btn"
+                        style={{ width: "100%", justifyContent: "center", minHeight: 44 }}
                       >
                         <GitHubIcon className="w-4 h-4" />
                         Source Code
                       </a>
                     )}
                   </div>
-
                 </div>
               </div>
-
             </div>
-
           </div>
         </div>
       )}
-
     </div>
   );
 }
